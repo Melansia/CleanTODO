@@ -12,7 +12,7 @@
     <string name="list_fragment_menu_priority_low">Priority Low</string>
     <string name="delete_all">Delete All</string>
     <string name="add_fragment_menu_add">Add</string>
-    <string name="add_fragment_menu_save">Save</string>
+    <string name="update_fragment_menu_save">Save</string>
     <string name="update_fragment_menu_delete">Delete</string>
 
     <string-array name="priorities">
