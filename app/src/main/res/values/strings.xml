@@ -6,6 +6,11 @@
     <string name="no_data">No Data</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
+    <string name="list_fragment_search">Search</string>
+    <string name="list_fragment_menu_sort_by">Sort By</string>
+    <string name="list_fragment_menu_priority_high">Priority High</string>
+    <string name="list_fragment_menu_priority_low">Priority Low</string>
+    <string name="delete_all">Delete All</string>
 
     <string-array name="priorities">
         <item>High Priority</item>
