@@ -8,7 +8,7 @@
     tools:context=".fragments.update.UpdateFragment">
 
     <EditText
-        android:id="@+id/et_title_current"
+        android:id="@+id/etTitle"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
@@ -24,7 +24,7 @@
         android:autofillHints="true" />
 
     <Spinner
-        android:id="@+id/priorities_spinner_current"
+        android:id="@+id/prioritiesSpinner"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
@@ -35,10 +35,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_title_current" />
+        app:layout_constraintTop_toBottomOf="@+id/etTitle" />
 
     <EditText
-        android:id="@+id/et_description_current"
+        android:id="@+id/etDescription"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priorities_spinner_current"
+        app:layout_constraintTop_toBottomOf="@+id/prioritiesSpinner"
         android:autofillHints="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
