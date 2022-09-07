@@ -1,4 +1,4 @@
-package com.example.todoappclean.data
+package com.example.todoappclean.data.models
 
 enum class Priority {
     HIGH,
