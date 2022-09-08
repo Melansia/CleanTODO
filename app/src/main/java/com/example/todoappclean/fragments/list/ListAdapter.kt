@@ -1,11 +1,10 @@
 package com.example.todoappclean.fragments.list
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoappclean.R
@@ -29,7 +28,7 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
         val tvRowLTitleText = holder.itemView.findViewById<TextView>(R.id.tvRowLTitleText)
         val tvRowLDescription = holder.itemView.findViewById<TextView>(R.id.tvRowLDescription)
         val cvRowLPriorityIndicator =
-            holder.itemView.findViewById<CalendarView>(R.id.cvRowLPriorityIndicator)
+            holder.itemView.findViewById<CardView>(R.id.cvRowLPriorityIndicator)
         val priority = dataList[position].priority
 
         tvRowLTitleText.text = dataList[position].title
@@ -57,7 +56,7 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
     }
 
     fun setData(toDoData: List<ToDoData>) {
-        this.dataList
+        this.dataList = toDoData
         notifyDataSetChanged()
     }
 }
