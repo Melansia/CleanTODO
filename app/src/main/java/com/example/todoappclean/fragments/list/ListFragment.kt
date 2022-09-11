@@ -3,6 +3,8 @@ package com.example.todoappclean.fragments.list
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoappclean.R
 import com.example.todoappclean.data.viewmodel.ToDoViewModel
+import com.example.todoappclean.fragments.SharedViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ListFragment : Fragment() {
@@ -21,6 +24,8 @@ class ListFragment : Fragment() {
     private lateinit var fabAdd: FloatingActionButton
 
     private val mToDoViewModel: ToDoViewModel by viewModels()
+    private val mSharedViewModel: SharedViewModel by viewModels()
+
     private val adapter: ListAdapter by lazy { ListAdapter() }
 
     override fun onCreateView(
@@ -38,7 +43,11 @@ class ListFragment : Fragment() {
         rvFragmentList.layoutManager = LinearLayoutManager(requireActivity())
 
         mToDoViewModel.getAllData.observe(viewLifecycleOwner, Observer { data ->
+            mSharedViewModel.checkIfDatabaseEmpty(data)
             adapter.setData(data)
+        })
+        mSharedViewModel.emptyDatabase.observe(viewLifecycleOwner, Observer {
+            showEmptyDatabaseViews(it)
         })
 
         fabAdd.setOnClickListener {
@@ -52,6 +61,16 @@ class ListFragment : Fragment() {
         setHasOptionsMenu(true)
 
         return view
+    }
+
+    private fun showEmptyDatabaseViews(emptyDatabase: Boolean) {
+        if (emptyDatabase) {
+            view?.findViewById<ImageView>(R.id.iv_no_data)?.visibility = View.VISIBLE
+            view?.findViewById<TextView>(R.id.tv_no_data)?.visibility = View.VISIBLE
+        } else {
+            view?.findViewById<ImageView>(R.id.iv_no_data)?.visibility = View.INVISIBLE
+            view?.findViewById<TextView>(R.id.tv_no_data)?.visibility = View.INVISIBLE
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
