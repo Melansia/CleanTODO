@@ -7,12 +7,10 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.todoappclean.R
-import com.example.todoappclean.data.models.Priority
 import com.example.todoappclean.data.models.ToDoData
 import com.example.todoappclean.data.viewmodel.ToDoViewModel
 import com.example.todoappclean.fragments.SharedViewModel
