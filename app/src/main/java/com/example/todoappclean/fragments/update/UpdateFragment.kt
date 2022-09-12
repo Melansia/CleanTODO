@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.todoappclean.R
 import com.example.todoappclean.data.models.ToDoData
 import com.example.todoappclean.data.viewmodel.ToDoViewModel
+import com.example.todoappclean.databinding.FragmentUpdateBinding
 import com.example.todoappclean.fragments.SharedViewModel
 
 class UpdateFragment : Fragment() {
@@ -22,30 +23,24 @@ class UpdateFragment : Fragment() {
     private val mTodoViewModel: ToDoViewModel by viewModels()
     private val mSharedViewModel: SharedViewModel by viewModels()
 
-    private lateinit var etTitleUpdate: EditText
-    private lateinit var prioritiesSpinnerUpdate: Spinner
-    private lateinit var etDescriptionUpdate: EditText
+    private var _binding: FragmentUpdateBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_update, container, false)
-
-        etTitleUpdate = view.findViewById(R.id.etTitleUpdate)
-        prioritiesSpinnerUpdate = view.findViewById(R.id.prioritiesSpinnerUpdate)
-        etDescriptionUpdate = view.findViewById(R.id.etDescriptionUpdate)
-
+        // Data binding
+        _binding = FragmentUpdateBinding.inflate(inflater, container, false)
+        binding.args = args
 
         // Set Menu
         setHasOptionsMenu(true)
 
-        etTitleUpdate.setText(args.currentItem.title)
-        etDescriptionUpdate.setText(args.currentItem.descriptions)
-        prioritiesSpinnerUpdate.setSelection(mSharedViewModel.parsePriorityToInt(args.currentItem.priority))
-        prioritiesSpinnerUpdate.onItemSelectedListener = mSharedViewModel.listener
+        // Spinner Item Selected
+        binding.prioritiesSpinnerUpdate.onItemSelectedListener = mSharedViewModel.listener
         // Inflate the layout for this fragment
-        return view
+        return binding.root
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -61,9 +56,9 @@ class UpdateFragment : Fragment() {
     }
 
     private fun updateItem() {
-        val title = etTitleUpdate.text.toString()
-        val description = etDescriptionUpdate.text.toString()
-        val getPriority = prioritiesSpinnerUpdate.selectedItem.toString()
+        val title = binding.etTitleUpdate.text.toString()
+        val description = binding.etDescriptionUpdate.text.toString()
+        val getPriority = binding.prioritiesSpinnerUpdate.selectedItem.toString()
 
         val validation = mSharedViewModel.verifyDataFromUser(title, description)
 
@@ -100,6 +95,12 @@ class UpdateFragment : Fragment() {
         builder.setTitle("Delete '${args.currentItem.title}'?")
         builder.setMessage("Are you sure you want to delete '${args.currentItem.title}'?")
         builder.create().show()
+    }
+
+    // Whenever object is destroy we set the _binding to null in order to prevent memory leeks
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
