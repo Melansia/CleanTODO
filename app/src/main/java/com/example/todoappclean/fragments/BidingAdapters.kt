@@ -1,10 +1,12 @@
 package com.example.todoappclean.fragments
 
 import android.view.View
+import android.widget.Spinner
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import com.example.todoappclean.R
+import com.example.todoappclean.data.models.Priority
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class BidingAdapters {
@@ -24,11 +26,26 @@ class BidingAdapters {
         @BindingAdapter("android:emptyDatabase")
         @JvmStatic
         fun emptyDatabase(view: View, emptyDatabase: MutableLiveData<Boolean>) {
-            when(emptyDatabase.value) {
+            when (emptyDatabase.value) {
                 true -> view.visibility = View.VISIBLE
                 else -> view.visibility = View.INVISIBLE
             }
         }
 
+        @BindingAdapter("android:parsePriorityToInt")
+        @JvmStatic
+        fun parsePriorityToInt(view: Spinner, priority: Priority) {
+            when (priority) {
+                Priority.HIGH -> {
+                    view.setSelection(0)
+                }
+                Priority.MEDIUM -> {
+                    view.setSelection(1)
+                }
+                Priority.LOW -> {
+                    view.setSelection(2)
+                }
+            }
+        }
     }
 }
