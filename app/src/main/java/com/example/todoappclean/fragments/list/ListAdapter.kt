@@ -13,55 +13,36 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todoappclean.R
 import com.example.todoappclean.data.models.Priority
 import com.example.todoappclean.data.models.ToDoData
+import com.example.todoappclean.databinding.RowLayoutBinding
 
 class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
-    var dataList = emptyList<ToDoData>()
+    private var dataList = emptyList<ToDoData>()
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class MyViewHolder(private val binding: RowLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(toDoData: ToDoData) {
+            binding.toDoData = toDoData
+            binding.executePendingBindings()
+        }
+        companion object{
+            fun from(parent: ViewGroup):MyViewHolder{
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = RowLayoutBinding.inflate(layoutInflater,parent, false)
+                return MyViewHolder(binding)
+            }
+        }
+    }
 
     override fun getItemCount(): Int = dataList.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.row_layout, parent, false)
-        return MyViewHolder(view)
+        return MyViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val tvRowLTitleText = holder.itemView.findViewById<TextView>(R.id.tvRowLTitleText)
-        val tvRowLDescription = holder.itemView.findViewById<TextView>(R.id.tvRowLDescription)
-        val cvRowLPriorityIndicator =
-            holder.itemView.findViewById<CardView>(R.id.cvRowLPriorityIndicator)
-        val priority = dataList[position].priority
-
-        // Listener
-        holder.itemView.findViewById<ConstraintLayout>(R.id.clRowBackground).setOnClickListener {
-            val action = ListFragmentDirections.actionListFragmentToUpdateFragment(dataList[position])
-            holder.itemView.findNavController().navigate(action)
-        }
-
-        tvRowLTitleText.text = dataList[position].title
-        tvRowLDescription.text = dataList[position].descriptions
-        when (priority) {
-            Priority.HIGH -> cvRowLPriorityIndicator.setBackgroundColor(
-                ContextCompat.getColor(
-                    holder.itemView.context,
-                    R.color.red
-                )
-            )
-            Priority.MEDIUM -> cvRowLPriorityIndicator.setBackgroundColor(
-                ContextCompat.getColor(
-                    holder.itemView.context,
-                    R.color.yellow
-                )
-            )
-            Priority.LOW -> cvRowLPriorityIndicator.setBackgroundColor(
-                ContextCompat.getColor(
-                    holder.itemView.context,
-                    R.color.green
-                )
-            )
-        }
+        val currentItem = dataList[position]
+        holder.bind(currentItem)
     }
 
     fun setData(toDoData: List<ToDoData>) {
