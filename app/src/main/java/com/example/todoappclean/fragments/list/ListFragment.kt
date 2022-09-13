@@ -77,7 +77,7 @@ class ListFragment : Fragment() {
 
     private fun restoreDeletedData(view: View, deletedItem: ToDoData, position: Int) {
         val snackBar = Snackbar.make(
-            view, "Deleted '${deletedItem.title}",
+            view, "Deleted '${deletedItem.title}'",
             Snackbar.LENGTH_LONG
         )
         snackBar.setAction("Undo"){
