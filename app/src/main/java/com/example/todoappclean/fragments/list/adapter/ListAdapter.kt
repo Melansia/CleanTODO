@@ -1,23 +1,14 @@
-package com.example.todoappclean.fragments.list
+package com.example.todoappclean.fragments.list.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todoappclean.R
-import com.example.todoappclean.data.models.Priority
 import com.example.todoappclean.data.models.ToDoData
 import com.example.todoappclean.databinding.RowLayoutBinding
 
 class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
-    private var dataList = emptyList<ToDoData>()
+    var dataList = emptyList<ToDoData>()
 
     class MyViewHolder(private val binding: RowLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -26,7 +17,7 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
             binding.executePendingBindings()
         }
         companion object{
-            fun from(parent: ViewGroup):MyViewHolder{
+            fun from(parent: ViewGroup): MyViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = RowLayoutBinding.inflate(layoutInflater,parent, false)
                 return MyViewHolder(binding)
