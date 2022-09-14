@@ -75,8 +75,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:2.5.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
 
-    // Kotlin components
-//    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
-//    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+    // RecyclerView Animator
+    implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
 
 }
