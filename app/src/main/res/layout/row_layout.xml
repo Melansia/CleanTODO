@@ -28,15 +28,17 @@
 
             <TextView
                 android:id="@+id/tvRowLTitleText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:maxLength="25"
+                android:text="@{toDoData.title}"
                 android:textColor="@color/darkGray"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="@{toDoData.title}"
+                app:layout_constraintEnd_toStartOf="@+id/cvRowLPriorityIndicator"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="My Title" />
