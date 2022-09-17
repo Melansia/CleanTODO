@@ -26,7 +26,7 @@ The following **required** functionality is completed:
 * [X] Functionality to Delete an item.
 * [X] Functionality to Delete the all the items at once.
 * [X] Functionality to search and display the result.
-* [ ] Functionality to sort the list by priority.
+* [X] Functionality to sort the list by priority.
 
 The following **extensions** are implemented:
 
@@ -34,6 +34,7 @@ The following **extensions** are implemented:
 * [X] Custom transition animation
 * [X] Delete with a swipe
 * [X] Color marked priorities
+* [X] Custom app icon
 
 ## Video Walk-through
 
